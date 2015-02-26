@@ -16,5 +16,12 @@ namespace VLT_inventory
         {
             InitializeComponent();
         }
+
+        private void UseItem_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'vlt_inventoryDataSet.parts_master' table. You can move, or remove it, as needed.
+            this.parts_masterTableAdapter.Fill(this.vlt_inventoryDataSet.parts_master);
+
+        }
     }
 }

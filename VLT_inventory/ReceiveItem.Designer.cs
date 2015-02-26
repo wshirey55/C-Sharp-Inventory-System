@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txt_search = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.data_recieveItem = new System.Windows.Forms.DataGridView();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -47,11 +48,24 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_home = new System.Windows.Forms.Button();
+            this.rdo_new = new System.Windows.Forms.RadioButton();
+            this.rdo_damaged = new System.Windows.Forms.RadioButton();
+            this.vlt_inventoryDataSet = new VLT_inventory.vlt_inventoryDataSet();
+            this.partsMasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.parts_masterTableAdapter = new VLT_inventory.vlt_inventoryDataSetTableAdapters.parts_masterTableAdapter();
+            this.partIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.partNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.partSerialDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.manufacturerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.costDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rdo_repaired = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.data_recieveItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_amountUsed)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vlt_inventoryDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.partsMasterBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // txt_search
@@ -81,13 +95,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Search";
             // 
-            // dataGridView1
+            // data_recieveItem
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(33, 115);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(641, 209);
-            this.dataGridView1.TabIndex = 3;
+            this.data_recieveItem.AllowUserToAddRows = false;
+            this.data_recieveItem.AllowUserToDeleteRows = false;
+            this.data_recieveItem.AutoGenerateColumns = false;
+            this.data_recieveItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.data_recieveItem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.partIDDataGridViewTextBoxColumn,
+            this.partNameDataGridViewTextBoxColumn,
+            this.partSerialDataGridViewTextBoxColumn,
+            this.manufacturerDataGridViewTextBoxColumn,
+            this.costDataGridViewTextBoxColumn});
+            this.data_recieveItem.DataSource = this.partsMasterBindingSource;
+            this.data_recieveItem.Location = new System.Drawing.Point(33, 115);
+            this.data_recieveItem.Name = "data_recieveItem";
+            this.data_recieveItem.Size = new System.Drawing.Size(641, 209);
+            this.data_recieveItem.TabIndex = 3;
             // 
             // textBox1
             // 
@@ -189,6 +213,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.rdo_repaired);
+            this.groupBox2.Controls.Add(this.rdo_damaged);
+            this.groupBox2.Controls.Add(this.rdo_new);
             this.groupBox2.Controls.Add(this.btn_confirm);
             this.groupBox2.Controls.Add(this.btn_cancel);
             this.groupBox2.Controls.Add(this.label5);
@@ -226,6 +253,83 @@
             this.btn_home.Text = "Home";
             this.btn_home.UseVisualStyleBackColor = true;
             // 
+            // rdo_new
+            // 
+            this.rdo_new.AutoSize = true;
+            this.rdo_new.Location = new System.Drawing.Point(167, 117);
+            this.rdo_new.Name = "rdo_new";
+            this.rdo_new.Size = new System.Drawing.Size(47, 17);
+            this.rdo_new.TabIndex = 17;
+            this.rdo_new.TabStop = true;
+            this.rdo_new.Text = "New";
+            this.rdo_new.UseVisualStyleBackColor = true;
+            // 
+            // rdo_damaged
+            // 
+            this.rdo_damaged.AutoSize = true;
+            this.rdo_damaged.Location = new System.Drawing.Point(167, 140);
+            this.rdo_damaged.Name = "rdo_damaged";
+            this.rdo_damaged.Size = new System.Drawing.Size(71, 17);
+            this.rdo_damaged.TabIndex = 18;
+            this.rdo_damaged.TabStop = true;
+            this.rdo_damaged.Text = "Damaged";
+            this.rdo_damaged.UseVisualStyleBackColor = true;
+            // 
+            // vlt_inventoryDataSet
+            // 
+            this.vlt_inventoryDataSet.DataSetName = "vlt_inventoryDataSet";
+            this.vlt_inventoryDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // partsMasterBindingSource
+            // 
+            this.partsMasterBindingSource.DataMember = "parts master";
+            this.partsMasterBindingSource.DataSource = this.vlt_inventoryDataSet;
+            // 
+            // parts_masterTableAdapter
+            // 
+            this.parts_masterTableAdapter.ClearBeforeFill = true;
+            // 
+            // partIDDataGridViewTextBoxColumn
+            // 
+            this.partIDDataGridViewTextBoxColumn.DataPropertyName = "Part ID";
+            this.partIDDataGridViewTextBoxColumn.HeaderText = "Part ID";
+            this.partIDDataGridViewTextBoxColumn.Name = "partIDDataGridViewTextBoxColumn";
+            // 
+            // partNameDataGridViewTextBoxColumn
+            // 
+            this.partNameDataGridViewTextBoxColumn.DataPropertyName = "Part Name";
+            this.partNameDataGridViewTextBoxColumn.HeaderText = "Part Name";
+            this.partNameDataGridViewTextBoxColumn.Name = "partNameDataGridViewTextBoxColumn";
+            // 
+            // partSerialDataGridViewTextBoxColumn
+            // 
+            this.partSerialDataGridViewTextBoxColumn.DataPropertyName = "Part Serial";
+            this.partSerialDataGridViewTextBoxColumn.HeaderText = "Part Serial";
+            this.partSerialDataGridViewTextBoxColumn.Name = "partSerialDataGridViewTextBoxColumn";
+            // 
+            // manufacturerDataGridViewTextBoxColumn
+            // 
+            this.manufacturerDataGridViewTextBoxColumn.DataPropertyName = "Manufacturer";
+            this.manufacturerDataGridViewTextBoxColumn.HeaderText = "Manufacturer";
+            this.manufacturerDataGridViewTextBoxColumn.Name = "manufacturerDataGridViewTextBoxColumn";
+            // 
+            // costDataGridViewTextBoxColumn
+            // 
+            this.costDataGridViewTextBoxColumn.DataPropertyName = "Cost";
+            this.costDataGridViewTextBoxColumn.HeaderText = "Cost";
+            this.costDataGridViewTextBoxColumn.Name = "costDataGridViewTextBoxColumn";
+            // 
+            // rdo_repaired
+            // 
+            this.rdo_repaired.AutoSize = true;
+            this.rdo_repaired.Location = new System.Drawing.Point(167, 163);
+            this.rdo_repaired.Name = "rdo_repaired";
+            this.rdo_repaired.Size = new System.Drawing.Size(68, 17);
+            this.rdo_repaired.TabIndex = 19;
+            this.rdo_repaired.TabStop = true;
+            this.rdo_repaired.Text = "Repaired";
+            this.rdo_repaired.UseVisualStyleBackColor = true;
+            // 
             // ReceiveItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -234,17 +338,20 @@
             this.Controls.Add(this.btn_home);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.data_recieveItem);
             this.Controls.Add(this.groupBox1);
             this.Name = "ReceiveItem";
             this.Text = "ReceiveItem";
+            this.Load += new System.EventHandler(this.ReceiveItem_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.data_recieveItem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_amountUsed)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vlt_inventoryDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.partsMasterBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -254,7 +361,7 @@
         private System.Windows.Forms.TextBox txt_search;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView data_recieveItem;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
@@ -270,5 +377,16 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btn_home;
+        private System.Windows.Forms.RadioButton rdo_damaged;
+        private System.Windows.Forms.RadioButton rdo_new;
+        private vlt_inventoryDataSet vlt_inventoryDataSet;
+        private System.Windows.Forms.BindingSource partsMasterBindingSource;
+        private vlt_inventoryDataSetTableAdapters.parts_masterTableAdapter parts_masterTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn partIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn partNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn partSerialDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn manufacturerDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn costDataGridViewTextBoxColumn;
+        private System.Windows.Forms.RadioButton rdo_repaired;
     }
 }

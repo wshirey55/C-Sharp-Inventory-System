@@ -63,6 +63,7 @@
             this.txt_login.Name = "txt_login";
             this.txt_login.Size = new System.Drawing.Size(131, 20);
             this.txt_login.TabIndex = 2;
+            this.txt_login.TextChanged += new System.EventHandler(this.txt_login_TextChanged);
             // 
             // txt_password
             // 
@@ -70,6 +71,7 @@
             this.txt_password.Name = "txt_password";
             this.txt_password.Size = new System.Drawing.Size(131, 20);
             this.txt_password.TabIndex = 3;
+            this.txt_password.TextChanged += new System.EventHandler(this.txt_password_TextChanged);
             // 
             // pictureBox1
             // 
@@ -88,6 +90,7 @@
             this.btn_login.TabIndex = 5;
             this.btn_login.Text = "Login";
             this.btn_login.UseVisualStyleBackColor = true;
+            this.btn_login.Click += new System.EventHandler(this.btn_login_Click);
             // 
             // btn_cancel
             // 
@@ -97,6 +100,7 @@
             this.btn_cancel.TabIndex = 6;
             this.btn_cancel.Text = "Cancel";
             this.btn_cancel.UseVisualStyleBackColor = true;
+            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
             // btn_quickCheck
             // 
