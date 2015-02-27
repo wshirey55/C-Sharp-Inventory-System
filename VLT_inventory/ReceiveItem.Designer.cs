@@ -47,6 +47,11 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_home = new System.Windows.Forms.Button();
+            this.rdo_repaired = new System.Windows.Forms.RadioButton();
+            this.rdo_damaged = new System.Windows.Forms.RadioButton();
+            this.rdo_new = new System.Windows.Forms.RadioButton();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_amountUsed)).BeginInit();
@@ -56,14 +61,14 @@
             // 
             // txt_search
             // 
-            this.txt_search.Location = new System.Drawing.Point(38, 26);
+            this.txt_search.Location = new System.Drawing.Point(195, 26);
             this.txt_search.Name = "txt_search";
             this.txt_search.Size = new System.Drawing.Size(288, 20);
             this.txt_search.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(343, 21);
+            this.button1.Location = new System.Drawing.Point(502, 21);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(103, 29);
             this.button1.TabIndex = 1;
@@ -72,11 +77,13 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.listBox1);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.txt_search);
             this.groupBox1.Location = new System.Drawing.Point(32, 20);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(520, 73);
+            this.groupBox1.Size = new System.Drawing.Size(642, 73);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Search";
@@ -189,6 +196,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.rdo_repaired);
+            this.groupBox2.Controls.Add(this.rdo_damaged);
+            this.groupBox2.Controls.Add(this.rdo_new);
             this.groupBox2.Controls.Add(this.btn_confirm);
             this.groupBox2.Controls.Add(this.btn_cancel);
             this.groupBox2.Controls.Add(this.label5);
@@ -225,6 +235,62 @@
             this.btn_home.TabIndex = 19;
             this.btn_home.Text = "Home";
             this.btn_home.UseVisualStyleBackColor = true;
+            // 
+            // rdo_repaired
+            // 
+            this.rdo_repaired.AutoSize = true;
+            this.rdo_repaired.Location = new System.Drawing.Point(173, 154);
+            this.rdo_repaired.Name = "rdo_repaired";
+            this.rdo_repaired.Size = new System.Drawing.Size(68, 17);
+            this.rdo_repaired.TabIndex = 22;
+            this.rdo_repaired.TabStop = true;
+            this.rdo_repaired.Text = "Repaired";
+            this.rdo_repaired.UseVisualStyleBackColor = true;
+            // 
+            // rdo_damaged
+            // 
+            this.rdo_damaged.AutoSize = true;
+            this.rdo_damaged.Location = new System.Drawing.Point(173, 131);
+            this.rdo_damaged.Name = "rdo_damaged";
+            this.rdo_damaged.Size = new System.Drawing.Size(71, 17);
+            this.rdo_damaged.TabIndex = 21;
+            this.rdo_damaged.TabStop = true;
+            this.rdo_damaged.Text = "Damaged";
+            this.rdo_damaged.UseVisualStyleBackColor = true;
+            // 
+            // rdo_new
+            // 
+            this.rdo_new.AutoSize = true;
+            this.rdo_new.Location = new System.Drawing.Point(173, 108);
+            this.rdo_new.Name = "rdo_new";
+            this.rdo_new.Size = new System.Drawing.Size(47, 17);
+            this.rdo_new.TabIndex = 20;
+            this.rdo_new.TabStop = true;
+            this.rdo_new.Text = "New";
+            this.rdo_new.UseVisualStyleBackColor = true;
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Items.AddRange(new object[] {
+            "Part ID",
+            "Part Name",
+            "Manufacturer",
+            "Manufacturer ID",
+            "Cost"});
+            this.listBox1.Location = new System.Drawing.Point(95, 26);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(75, 17);
+            this.listBox1.TabIndex = 2;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(28, 29);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(56, 13);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Search By";
             // 
             // ReceiveItem
             // 
@@ -270,5 +336,10 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btn_home;
+        private System.Windows.Forms.RadioButton rdo_repaired;
+        private System.Windows.Forms.RadioButton rdo_damaged;
+        private System.Windows.Forms.RadioButton rdo_new;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }

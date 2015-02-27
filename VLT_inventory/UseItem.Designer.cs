@@ -41,12 +41,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.num_amountUsed = new System.Windows.Forms.NumericUpDown();
-            this.btn_confirm = new System.Windows.Forms.Button();
             this.btn_cancel = new System.Windows.Forms.Button();
+            this.btn_confirm = new System.Windows.Forms.Button();
+            this.num_amountUsed = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_home = new System.Windows.Forms.Button();
+            this.rdo_new = new System.Windows.Forms.RadioButton();
+            this.rdo_damaged = new System.Windows.Forms.RadioButton();
+            this.rdo_repaired = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -155,6 +158,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.rdo_repaired);
+            this.groupBox2.Controls.Add(this.rdo_damaged);
+            this.groupBox2.Controls.Add(this.rdo_new);
             this.groupBox2.Controls.Add(this.btn_cancel);
             this.groupBox2.Controls.Add(this.btn_confirm);
             this.groupBox2.Controls.Add(this.num_amountUsed);
@@ -174,21 +180,14 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Item Info";
             // 
-            // label5
+            // btn_cancel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 143);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(71, 13);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "Amount Used";
-            // 
-            // num_amountUsed
-            // 
-            this.num_amountUsed.Location = new System.Drawing.Point(97, 141);
-            this.num_amountUsed.Name = "num_amountUsed";
-            this.num_amountUsed.Size = new System.Drawing.Size(37, 20);
-            this.num_amountUsed.TabIndex = 14;
+            this.btn_cancel.Location = new System.Drawing.Point(473, 141);
+            this.btn_cancel.Name = "btn_cancel";
+            this.btn_cancel.Size = new System.Drawing.Size(88, 31);
+            this.btn_cancel.TabIndex = 16;
+            this.btn_cancel.Text = "Cancel";
+            this.btn_cancel.UseVisualStyleBackColor = true;
             // 
             // btn_confirm
             // 
@@ -199,14 +198,21 @@
             this.btn_confirm.Text = "Confirm";
             this.btn_confirm.UseVisualStyleBackColor = true;
             // 
-            // btn_cancel
+            // num_amountUsed
             // 
-            this.btn_cancel.Location = new System.Drawing.Point(473, 141);
-            this.btn_cancel.Name = "btn_cancel";
-            this.btn_cancel.Size = new System.Drawing.Size(88, 31);
-            this.btn_cancel.TabIndex = 16;
-            this.btn_cancel.Text = "Cancel";
-            this.btn_cancel.UseVisualStyleBackColor = true;
+            this.num_amountUsed.Location = new System.Drawing.Point(97, 141);
+            this.num_amountUsed.Name = "num_amountUsed";
+            this.num_amountUsed.Size = new System.Drawing.Size(37, 20);
+            this.num_amountUsed.TabIndex = 14;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 143);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(71, 13);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Amount Used";
             // 
             // pictureBox1
             // 
@@ -225,6 +231,39 @@
             this.btn_home.TabIndex = 16;
             this.btn_home.Text = "Home";
             this.btn_home.UseVisualStyleBackColor = true;
+            // 
+            // rdo_new
+            // 
+            this.rdo_new.AutoSize = true;
+            this.rdo_new.Location = new System.Drawing.Point(178, 114);
+            this.rdo_new.Name = "rdo_new";
+            this.rdo_new.Size = new System.Drawing.Size(47, 17);
+            this.rdo_new.TabIndex = 17;
+            this.rdo_new.TabStop = true;
+            this.rdo_new.Text = "New";
+            this.rdo_new.UseVisualStyleBackColor = true;
+            // 
+            // rdo_damaged
+            // 
+            this.rdo_damaged.AutoSize = true;
+            this.rdo_damaged.Location = new System.Drawing.Point(178, 137);
+            this.rdo_damaged.Name = "rdo_damaged";
+            this.rdo_damaged.Size = new System.Drawing.Size(71, 17);
+            this.rdo_damaged.TabIndex = 18;
+            this.rdo_damaged.TabStop = true;
+            this.rdo_damaged.Text = "Damaged";
+            this.rdo_damaged.UseVisualStyleBackColor = true;
+            // 
+            // rdo_repaired
+            // 
+            this.rdo_repaired.AutoSize = true;
+            this.rdo_repaired.Location = new System.Drawing.Point(178, 160);
+            this.rdo_repaired.Name = "rdo_repaired";
+            this.rdo_repaired.Size = new System.Drawing.Size(68, 17);
+            this.rdo_repaired.TabIndex = 19;
+            this.rdo_repaired.TabStop = true;
+            this.rdo_repaired.Text = "Repaired";
+            this.rdo_repaired.UseVisualStyleBackColor = true;
             // 
             // UseItem
             // 
@@ -270,5 +309,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btn_home;
+        private System.Windows.Forms.RadioButton rdo_repaired;
+        private System.Windows.Forms.RadioButton rdo_damaged;
+        private System.Windows.Forms.RadioButton rdo_new;
     }
 }
