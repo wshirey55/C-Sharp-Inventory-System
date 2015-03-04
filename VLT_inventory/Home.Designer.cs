@@ -45,6 +45,7 @@
             this.btn_useItem.TabIndex = 0;
             this.btn_useItem.Text = "Use Item";
             this.btn_useItem.UseVisualStyleBackColor = true;
+            this.btn_useItem.Click += new System.EventHandler(this.btn_useItem_Click);
             // 
             // btn_recieveItem
             // 
@@ -54,6 +55,7 @@
             this.btn_recieveItem.TabIndex = 1;
             this.btn_recieveItem.Text = "Recieve Item";
             this.btn_recieveItem.UseVisualStyleBackColor = true;
+            this.btn_recieveItem.Click += new System.EventHandler(this.btn_recieveItem_Click);
             // 
             // btn_reports
             // 
@@ -72,6 +74,7 @@
             this.btn_masterList.TabIndex = 3;
             this.btn_masterList.Text = "Master List";
             this.btn_masterList.UseVisualStyleBackColor = true;
+            this.btn_masterList.Click += new System.EventHandler(this.btn_masterList_Click);
             // 
             // btn_admin
             // 

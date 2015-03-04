@@ -16,5 +16,35 @@ namespace VLT_inventory
         {
             InitializeComponent();
         }
+
+        private void btn_useItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            UseItem f2 = new UseItem();
+            f2.ShowDialog();
+
+            this.Close();
+        }
+
+        private void btn_recieveItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+           ReceiveItem f2 = new ReceiveItem();
+            f2.ShowDialog();
+
+            this.Close();
+        }
+
+        private void btn_masterList_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            MasterList f2 = new MasterList();
+            f2.ShowDialog();
+
+            this.Close();
+        }
     }
 }
