@@ -118,5 +118,86 @@ namespace VLT_inventory
             txt_manufacturer.Text = dataGridView1.Rows[0].Cells[2].Value.ToString();
             txt_manufacturerID.Text = dataGridView1.Rows[0].Cells[3].Value.ToString();
         }
+
+
+        private void btn_confirm_Click(object sender, EventArgs e)
+        {
+            if (rdo_new.Checked )
+            {
+                myConnection.Open();
+                SqlCommand cmd = myConnection.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "Update dbo.vlt_Master SET New = New - ('" + num_amountUsed.Text + "') WHERE ItemID = ('" + txt_itemID.Text + "')";
+                cmd.ExecuteNonQuery();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                myConnection.Close();
+
+                this.Hide();
+
+                UseItem f1 = new UseItem();
+                f1.ShowDialog();
+
+                this.Close();
+
+                
+            }
+
+            if (rdo_damaged.Checked)
+            {
+                myConnection.Open();
+                SqlCommand cmd = myConnection.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "Update dbo.vlt_Master SET Damaged = Damaged - ('" + num_amountUsed.Text + "') WHERE ItemID = ('" + txt_itemID.Text + "')";
+                cmd.ExecuteNonQuery();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                myConnection.Close();
+
+                this.Hide();
+
+                UseItem f1 = new UseItem();
+                f1.ShowDialog();
+
+                this.Close();
+            }
+
+            if (rdo_repaired.Checked)
+            {
+                myConnection.Open();
+                SqlCommand cmd = myConnection.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "Update dbo.vlt_Master SET Repaired = Repaired - ('" + num_amountUsed.Text + "') WHERE ItemID = ('" + txt_itemID.Text + "')";
+                cmd.ExecuteNonQuery();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                myConnection.Close();
+
+                this.Hide();
+
+                UseItem f1 = new UseItem();
+                f1.ShowDialog();
+
+                this.Close();
+            }
+        }
+
+        private void btn_home_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            Home f1 = new Home();
+            f1.ShowDialog();
+
+            this.Close();
+        }
+
+        private void btn_cancel_Click(object sender, EventArgs e)
+        {
+            txt_search.Text = String.Empty;
+            txt_itemID.Text = String.Empty;
+            txt_itemDescription.Text = String.Empty;
+            txt_manufacturer.Text = String.Empty;
+            txt_manufacturerID.Text = String.Empty;
+        }
+
+        
     }
 }

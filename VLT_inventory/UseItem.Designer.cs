@@ -56,6 +56,7 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.vltMasterBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vltMasterBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vlt_inventoryDBDataSet)).BeginInit();
@@ -69,7 +70,7 @@
             // 
             // txt_search
             // 
-            this.txt_search.Location = new System.Drawing.Point(196, 27);
+            this.txt_search.Location = new System.Drawing.Point(272, 27);
             this.txt_search.Name = "txt_search";
             this.txt_search.Size = new System.Drawing.Size(217, 20);
             this.txt_search.TabIndex = 0;
@@ -77,6 +78,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.cmb_itemBox);
             this.groupBox1.Controls.Add(this.txt_search);
             this.groupBox1.Location = new System.Drawing.Point(19, 16);
@@ -95,7 +97,7 @@
             "Manufacturer",
             "Manufacturer ID",
             "Cost"});
-            this.cmb_itemBox.Location = new System.Drawing.Point(54, 26);
+            this.cmb_itemBox.Location = new System.Drawing.Point(138, 27);
             this.cmb_itemBox.Name = "cmb_itemBox";
             this.cmb_itemBox.Size = new System.Drawing.Size(116, 21);
             this.cmb_itemBox.TabIndex = 1;
@@ -237,8 +239,9 @@
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(88, 31);
             this.btn_cancel.TabIndex = 16;
-            this.btn_cancel.Text = "Cancel";
+            this.btn_cancel.Text = "Clear";
             this.btn_cancel.UseVisualStyleBackColor = true;
+            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
             // btn_confirm
             // 
@@ -248,6 +251,7 @@
             this.btn_confirm.TabIndex = 15;
             this.btn_confirm.Text = "Confirm";
             this.btn_confirm.UseVisualStyleBackColor = true;
+            this.btn_confirm.Click += new System.EventHandler(this.btn_confirm_Click);
             // 
             // num_amountUsed
             // 
@@ -282,6 +286,7 @@
             this.btn_home.TabIndex = 16;
             this.btn_home.Text = "Home";
             this.btn_home.UseVisualStyleBackColor = true;
+            this.btn_home.Click += new System.EventHandler(this.btn_home_Click);
             // 
             // vlt_MasterTableAdapter
             // 
@@ -303,6 +308,15 @@
             this.dataGridView1.Size = new System.Drawing.Size(527, 173);
             this.dataGridView1.TabIndex = 17;
             this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(64, 30);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(56, 13);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "Search By";
             // 
             // UseItem
             // 
@@ -361,5 +375,6 @@
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.BindingSource vltMasterBindingSource1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label6;
     }
 }

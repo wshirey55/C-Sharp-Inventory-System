@@ -16,5 +16,15 @@ namespace VLT_inventory
         {
             InitializeComponent();
         }
+
+        private void btn_home_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            Home f1 = new Home();
+            f1.ShowDialog();
+
+            this.Close();
+        }
     }
 }
