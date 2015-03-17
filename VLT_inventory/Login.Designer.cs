@@ -107,6 +107,7 @@
             this.btn_quickCheck.TabIndex = 7;
             this.btn_quickCheck.Text = "Quick Check";
             this.btn_quickCheck.UseVisualStyleBackColor = true;
+            this.btn_quickCheck.Click += new System.EventHandler(this.btn_quickCheck_Click);
             // 
             // Login
             // 

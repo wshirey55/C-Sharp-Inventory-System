@@ -10,24 +10,12 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 namespace VLT_inventory
 {
-    public partial class MasterList : Form
+    public partial class QuickCheck : Form
     {
         SqlConnection myConnection = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=vlt_inventoryDB;Integrated Security=True");
-        public MasterList()
+        public QuickCheck()
         {
             InitializeComponent();
-        }
-
-
-
-        private void btn_home_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-
-            Home f1 = new Home();
-            f1.ShowDialog();
-
-            this.Close();
         }
 
         private void txt_search_TextChanged(object sender, EventArgs e)
@@ -109,60 +97,14 @@ namespace VLT_inventory
             myConnection.Close();
         }
 
-        private void MasterList_Load(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'vlt_inventoryDBDataSet.vlt_Master' table. You can move, or remove it, as needed.
-            this.vlt_MasterTableAdapter.Fill(this.vlt_inventoryDBDataSet.vlt_Master);
-
-            lbl_username.Text = Login.sendText;
-
-        }
-
-        private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
-        {
-            txt_itemID.Text = dataGridView1.Rows[0].Cells[0].Value.ToString();
-            txt_itemDescription.Text = dataGridView1.Rows[0].Cells[1].Value.ToString();
-            txt_manufacturer.Text = dataGridView1.Rows[0].Cells[2].Value.ToString();
-            txt_manufacturerID.Text = dataGridView1.Rows[0].Cells[3].Value.ToString();
-            txt_cost.Text = dataGridView1.Rows[0].Cells[4].Value.ToString();
-        }
-
-        private void btn_add_Click(object sender, EventArgs e)
-        {
-            myConnection.Open();
-            SqlCommand cmd = myConnection.CreateCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "INSERT INTO dbo.vlt_Master (ItemID,Item_Name,Manufacturer,Manufacturer_ID,Cost,New,Damaged,Repaired) VALUES (('" + txt_itemID.Text + "'), ('" + txt_itemDescription.Text + "'), ('" + txt_manufacturer.Text + "'), ('" + txt_manufacturerID.Text + "'), ('" + txt_cost.Text + "'),0,0,0 )";
-            cmd.ExecuteNonQuery();
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            myConnection.Close();
-
             this.Hide();
 
-            MasterList f1 = new MasterList();
+            Login f1 = new Login();
             f1.ShowDialog();
 
             this.Close();
         }
-
-        private void btn_remove_Click(object sender, EventArgs e)
-        {
-            myConnection.Open();
-            SqlCommand cmd = myConnection.CreateCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "DELETE FROM dbo.vlt_Master WHERE itemID = ('" + txt_itemID.Text + "')";
-            cmd.ExecuteNonQuery();
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            myConnection.Close();
-
-            this.Hide();
-
-            MasterList f1 = new MasterList();
-            f1.ShowDialog();
-
-            this.Close();
-        }
-
-        
     }
 }

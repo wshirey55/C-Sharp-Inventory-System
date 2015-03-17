@@ -34,6 +34,8 @@
             this.btn_masterList = new System.Windows.Forms.Button();
             this.btn_admin = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lbl_user = new System.Windows.Forms.Label();
+            this.lbl_username = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,11 +96,31 @@
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
+            // lbl_user
+            // 
+            this.lbl_user.AutoSize = true;
+            this.lbl_user.Location = new System.Drawing.Point(363, 282);
+            this.lbl_user.Name = "lbl_user";
+            this.lbl_user.Size = new System.Drawing.Size(0, 13);
+            this.lbl_user.TabIndex = 6;
+            this.lbl_user.Click += new System.EventHandler(this.lbl_access_Click);
+            // 
+            // lbl_username
+            // 
+            this.lbl_username.AutoSize = true;
+            this.lbl_username.Location = new System.Drawing.Point(345, 282);
+            this.lbl_username.Name = "lbl_username";
+            this.lbl_username.Size = new System.Drawing.Size(53, 13);
+            this.lbl_username.TabIndex = 7;
+            this.lbl_username.Text = "username";
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(410, 304);
+            this.Controls.Add(this.lbl_username);
+            this.Controls.Add(this.lbl_user);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btn_admin);
             this.Controls.Add(this.btn_masterList);
@@ -107,9 +129,16 @@
             this.Controls.Add(this.btn_useItem);
             this.Name = "Home";
             this.Text = "Home";
+            this.Load += new System.EventHandler(this.Home_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
+        }
+
+        private void lbl_access_Click(object sender, System.EventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
 
         #endregion
@@ -120,5 +149,7 @@
         private System.Windows.Forms.Button btn_masterList;
         private System.Windows.Forms.Button btn_admin;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lbl_user;
+        private System.Windows.Forms.Label lbl_username;
     }
 }

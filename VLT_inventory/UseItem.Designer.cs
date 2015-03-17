@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.txt_search = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.cmb_itemBox = new System.Windows.Forms.ComboBox();
             this.vltMasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.vlt_inventoryDBDataSet = new VLT_inventory.vlt_inventoryDBDataSet();
@@ -56,7 +57,7 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.vltMasterBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lbl_username = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vltMasterBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vlt_inventoryDBDataSet)).BeginInit();
@@ -87,6 +88,15 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Search";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(64, 30);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(56, 13);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "Search By";
             // 
             // cmb_itemBox
             // 
@@ -309,20 +319,21 @@
             this.dataGridView1.TabIndex = 17;
             this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
             // 
-            // label6
+            // lbl_username
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(64, 30);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 13);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "Search By";
+            this.lbl_username.AutoSize = true;
+            this.lbl_username.Location = new System.Drawing.Point(602, 9);
+            this.lbl_username.Name = "lbl_username";
+            this.lbl_username.Size = new System.Drawing.Size(53, 13);
+            this.lbl_username.TabIndex = 18;
+            this.lbl_username.Text = "username";
             // 
             // UseItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(667, 582);
+            this.Controls.Add(this.lbl_username);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btn_home);
             this.Controls.Add(this.pictureBox1);
@@ -343,6 +354,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.vltMasterBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -376,5 +388,6 @@
         private System.Windows.Forms.BindingSource vltMasterBindingSource1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lbl_username;
     }
 }

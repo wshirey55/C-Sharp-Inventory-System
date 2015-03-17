@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 
 namespace VLT_inventory
 {
@@ -24,9 +25,9 @@ namespace VLT_inventory
         {
             // TODO: This line of code loads data into the 'vlt_inventoryDBDataSet.vlt_Master' table. You can move, or remove it, as needed.
             this.vlt_MasterTableAdapter.Fill(this.vlt_inventoryDBDataSet.vlt_Master);
-
+            lbl_username.Text = Login.sendText;
         }
-
+        //takes the user to the main navigation
         private void btn_home_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -115,7 +116,7 @@ namespace VLT_inventory
             }
             myConnection.Close();
         }
-
+        //pulls the data from the datagrid view to the textboxes
         private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
         {
             txt_itemID.Text = dataGridView1.Rows[0].Cells[0].Value.ToString();
@@ -126,6 +127,7 @@ namespace VLT_inventory
 
         private void btn_confirm_Click(object sender, EventArgs e)
         {
+            //pulls inventory from the new, repaired or damaged columns on the vlt_master table
             if (rdo_new.Checked)
             {
                 myConnection.Open();
@@ -134,6 +136,19 @@ namespace VLT_inventory
                 cmd.CommandText = "Update dbo.vlt_Master SET New = New + ('" + num_amountUsed.Text + "') WHERE ItemID = ('" + txt_itemID.Text + "')";
                 cmd.ExecuteNonQuery();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
+                myConnection.Close();
+
+                //gets date and time for TimeStamp.
+                DateTime myDateTime = DateTime.Now;
+                string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+
+                //creates the record of item used in the UsedLog table.
+                myConnection.Open();
+                SqlCommand cmd2 = myConnection.CreateCommand();
+                cmd2.CommandType = CommandType.Text;
+                cmd2.CommandText = "INSERT INTO dbo.RecievedLog (ItemID, Item_Name, Manufacturer, Manufacturer_ID, Amount_Recieved, Tech, Cost, [Repaired, Damaged, or New], Date_Time) VALUES (('" + txt_itemID.Text + "'),('" + txt_itemDescription.Text + "'),('" + txt_manufacturer.Text + "'),('" + txt_manufacturerID.Text + "'), ('" + num_amountUsed.Text + "'),('" + lbl_username.Text + "'), 0, 'New', ('" + myDateTime + "'))";
+                cmd2.ExecuteNonQuery();
+                //SqlDataAdapter da = new SqlDataAdapter(cmd);
                 myConnection.Close();
 
                 this.Hide();
@@ -156,6 +171,19 @@ namespace VLT_inventory
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 myConnection.Close();
 
+                //gets date and time for TimeStamp.
+                DateTime myDateTime = DateTime.Now;
+                string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+
+                //creates the record of item used in the UsedLog table.
+                myConnection.Open();
+                SqlCommand cmd2 = myConnection.CreateCommand();
+                cmd2.CommandType = CommandType.Text;
+                cmd2.CommandText = "INSERT INTO dbo.RecievedLog (ItemID, Item_Name, Manufacturer, Manufacturer_ID, Amount_Recieved, Tech, Cost, [Repaired, Damaged, or New], Date_Time) VALUES (('" + txt_itemID.Text + "'),('" + txt_itemDescription.Text + "'),('" + txt_manufacturer.Text + "'),('" + txt_manufacturerID.Text + "'), ('" + num_amountUsed.Text + "'),('" + lbl_username.Text + "'), 0, 'Damaged', ('" + myDateTime + "'))";
+                cmd2.ExecuteNonQuery();
+                //SqlDataAdapter da = new SqlDataAdapter(cmd);
+                myConnection.Close();
+
                 this.Hide();
 
                 ReceiveItem f1 = new ReceiveItem();
@@ -174,6 +202,19 @@ namespace VLT_inventory
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 myConnection.Close();
 
+                //gets date and time for TimeStamp.
+                DateTime myDateTime = DateTime.Now;
+                string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+
+                //creates the record of item used in the UsedLog table.
+                myConnection.Open();
+                SqlCommand cmd2 = myConnection.CreateCommand();
+                cmd2.CommandType = CommandType.Text;
+                cmd2.CommandText = "INSERT INTO dbo.RecievedLog (ItemID, Item_Name, Manufacturer, Manufacturer_ID, Amount_Recieved, Tech, Cost, [Repaired, Damaged, or New], Date_Time) VALUES (('" + txt_itemID.Text + "'),('" + txt_itemDescription.Text + "'),('" + txt_manufacturer.Text + "'),('" + txt_manufacturerID.Text + "'), ('" + num_amountUsed.Text + "'),('" + lbl_username.Text + "'), 0, 'Repaired', ('" + myDateTime + "'))";
+                cmd2.ExecuteNonQuery();
+                //SqlDataAdapter da = new SqlDataAdapter(cmd);
+                myConnection.Close();
+
                 this.Hide();
 
                 ReceiveItem f1 = new ReceiveItem();
@@ -182,7 +223,7 @@ namespace VLT_inventory
                 this.Close();
             }
         }
-
+        //clears out all of the text fields
         private void btn_cancel_Click(object sender, EventArgs e)
         {
             txt_search.Text = String.Empty;

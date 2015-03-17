@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.txt_search = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmb_itemBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txt_itemID = new System.Windows.Forms.TextBox();
             this.txt_itemDescription = new System.Windows.Forms.TextBox();
@@ -54,7 +55,7 @@
             this.vltMasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.vlt_MasterTableAdapter = new VLT_inventory.vlt_inventoryDBDataSetTableAdapters.vlt_MasterTableAdapter();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.cmb_itemBox = new System.Windows.Forms.ComboBox();
+            this.lbl_username = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.num_amountUsed)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -83,6 +84,20 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Search";
+            // 
+            // cmb_itemBox
+            // 
+            this.cmb_itemBox.FormattingEnabled = true;
+            this.cmb_itemBox.Items.AddRange(new object[] {
+            "Item ID",
+            "Item Name",
+            "Manufacturer",
+            "Manufacturer ID",
+            "Cost"});
+            this.cmb_itemBox.Location = new System.Drawing.Point(126, 25);
+            this.cmb_itemBox.Name = "cmb_itemBox";
+            this.cmb_itemBox.Size = new System.Drawing.Size(97, 21);
+            this.cmb_itemBox.TabIndex = 4;
             // 
             // label6
             // 
@@ -292,25 +307,21 @@
             this.dataGridView1.TabIndex = 20;
             this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
             // 
-            // cmb_itemBox
+            // lbl_username
             // 
-            this.cmb_itemBox.FormattingEnabled = true;
-            this.cmb_itemBox.Items.AddRange(new object[] {
-            "Item ID",
-            "Item Name",
-            "Manufacturer",
-            "Manufacturer ID",
-            "Cost"});
-            this.cmb_itemBox.Location = new System.Drawing.Point(126, 25);
-            this.cmb_itemBox.Name = "cmb_itemBox";
-            this.cmb_itemBox.Size = new System.Drawing.Size(97, 21);
-            this.cmb_itemBox.TabIndex = 4;
+            this.lbl_username.AutoSize = true;
+            this.lbl_username.Location = new System.Drawing.Point(677, 9);
+            this.lbl_username.Name = "lbl_username";
+            this.lbl_username.Size = new System.Drawing.Size(53, 13);
+            this.lbl_username.TabIndex = 21;
+            this.lbl_username.Text = "username";
             // 
             // ReceiveItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(742, 615);
+            this.Controls.Add(this.lbl_username);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btn_home);
             this.Controls.Add(this.pictureBox1);
@@ -329,6 +340,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.vltMasterBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -360,5 +372,6 @@
         private vlt_inventoryDBDataSetTableAdapters.vlt_MasterTableAdapter vlt_MasterTableAdapter;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ComboBox cmb_itemBox;
+        private System.Windows.Forms.Label lbl_username;
     }
 }
