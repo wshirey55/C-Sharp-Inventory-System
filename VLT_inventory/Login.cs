@@ -26,12 +26,27 @@ namespace VLT_inventory
         public void btn_login_Click(object sender, EventArgs e)
         {   //data string to open sql server connection
             SqlConnection myConnection = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=vlt_inventoryDB;Integrated Security=True");
-           
+            string login = txt_login.Text;
+            string password = txt_password.Text;
+
             try
             { 
                 //open conection to read login information
+                
+
                 myConnection.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * from dbo.Users where User_Name = '" + txt_login.Text +"' and Password = '" + txt_password.Text + "'", myConnection);
+               
+                SqlCommand cmd = new SqlCommand("SELECT * from dbo.Users where User_Name = @login and Password = @password", myConnection);
+
+               
+                cmd.Parameters.AddWithValue("@login", login);
+                cmd.Parameters.AddWithValue("@password", password);
+               
+                
+                
+
+                
+
                 SqlDataReader dr;
                 dr = cmd.ExecuteReader();
                 
@@ -57,8 +72,8 @@ namespace VLT_inventory
 
                          myConnection.Open();
 
-                         SqlCommand access = new SqlCommand("SELECT Access from dbo.Users WHERE User_Name = '" + txt_login.Text + "'", myConnection);
-
+                         SqlCommand access = new SqlCommand("SELECT Access from dbo.Users WHERE User_Name = @login", myConnection);
+                         access.Parameters.AddWithValue("@login", login);
                          userAccess = (int)access.ExecuteScalar();
                          myConnection.Close();
 
@@ -90,7 +105,7 @@ namespace VLT_inventory
 
                 catch(SqlException ex)
             {
-                    MessageBox.Show("You Failed"+ ex.Message);
+                    MessageBox.Show("Error! "+ ex.Message);
                 }
             }
        

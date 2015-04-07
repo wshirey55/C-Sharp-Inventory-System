@@ -47,55 +47,47 @@ namespace VLT_inventory
             if (cmb_itemBox.SelectedIndex == 0)
             {
 
-                SqlCommand cmd = myConnection.CreateCommand();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select * from dbo.vlt_Master where ItemID like ('" + txt_search.Text + "%')";
-                cmd.ExecuteNonQuery();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
+                string searchID = txt_search.Text;
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT * from dbo.vlt_Master where ItemID LIKE '%' + @search + '%'", myConnection);
+                adapter.SelectCommand.Parameters.AddWithValue("@search", searchID);
+
+                adapter.Fill(dt);
                 dataGridView1.DataSource = dt;
-
-
 
             }
             //if the user wants to search by Item Name
             if (cmb_itemBox.SelectedIndex == 1)
             {
 
-                SqlCommand cmd = myConnection.CreateCommand();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select * from dbo.vlt_Master where Item_Name like ('" + txt_search.Text + "%')";
-                cmd.ExecuteNonQuery();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                dataGridView1.DataSource = dt;
+                string searchID = txt_search.Text;
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT * from dbo.vlt_Master where Item_name LIKE '%' + @search + '%'", myConnection);
+                adapter.SelectCommand.Parameters.AddWithValue("@search", searchID);
 
-                // myConnection.Close();
+                adapter.Fill(dt);
+                dataGridView1.DataSource = dt;
+               
             }
             //if the user wants to search by Manufacturer
             if (cmb_itemBox.SelectedIndex == 2)
             {
 
-                SqlCommand cmd = myConnection.CreateCommand();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select * from dbo.vlt_Master where Manufacturer like ('" + txt_search.Text + "%')";
-                cmd.ExecuteNonQuery();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                dataGridView1.DataSource = dt;
+                string searchID = txt_search.Text;
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT * from dbo.vlt_Master where Manufacturer LIKE '%' + @search + '%'", myConnection);
+                adapter.SelectCommand.Parameters.AddWithValue("@search", searchID);
 
+                adapter.Fill(dt);
+                dataGridView1.DataSource = dt;
 
             }
             //if the user wants to search by Manufacturer ID
             if (cmb_itemBox.SelectedIndex == 3)
             {
 
-                SqlCommand cmd = myConnection.CreateCommand();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select * from dbo.vlt_Master where Manufacturer_ID like ('" + txt_search.Text + "%')";
-                cmd.ExecuteNonQuery();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
+                string searchID = txt_search.Text;
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT * from dbo.vlt_Master where Manufacturer_ID LIKE '%' + @search + '%'", myConnection);
+                adapter.SelectCommand.Parameters.AddWithValue("@search", searchID);
+
+                adapter.Fill(dt);
                 dataGridView1.DataSource = dt;
 
 
@@ -104,12 +96,11 @@ namespace VLT_inventory
             if (cmb_itemBox.SelectedIndex == 4)
             {
 
-                SqlCommand cmd = myConnection.CreateCommand();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select * from dbo.vlt_Master where Cost like ('" + txt_search.Text + "%')";
-                cmd.ExecuteNonQuery();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
+                string searchID = txt_search.Text;
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT * from dbo.vlt_Master where Cost LIKE '%' + @search + '%'", myConnection);
+                adapter.SelectCommand.Parameters.AddWithValue("@search", searchID);
+
+                adapter.Fill(dt);
                 dataGridView1.DataSource = dt;
 
 
@@ -127,100 +118,143 @@ namespace VLT_inventory
 
         private void btn_confirm_Click(object sender, EventArgs e)
         {
+            string ItemID = txt_itemID.Text;
+            string ItemName = txt_itemDescription.Text;
+            string Manufacturer = txt_manufacturer.Text;
+            string ManufacturerID = txt_manufacturerID.Text;
+            string AmountUsed = num_amountRecieved.Text;
+            string Tech = lbl_username.Text;
+            // TODO string Cost = txt_cost.text;
+
+
             //pulls inventory from the new, repaired or damaged columns on the vlt_master table
             if (rdo_new.Checked)
             {
-                myConnection.Open();
-                SqlCommand cmd = myConnection.CreateCommand();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "Update dbo.vlt_Master SET New = New + ('" + num_amountUsed.Text + "') WHERE ItemID = ('" + txt_itemID.Text + "')";
-                cmd.ExecuteNonQuery();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                myConnection.Close();
+                using (SqlCommand cmd = new SqlCommand("UPDATE dbo.vlt_Master SET New = New + @used WHERE ItemID = @itemID", myConnection))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@used", AmountUsed);
+                    cmd.Parameters.AddWithValue("@itemID", ItemID);
+                    myConnection.Open();
+                    cmd.ExecuteNonQuery();
+                    myConnection.Close();
+
+                }
 
                 //gets date and time for TimeStamp.
                 DateTime myDateTime = DateTime.Now;
                 string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd HH:mm:ss");
 
                 //creates the record of item used in the UsedLog table.
-                myConnection.Open();
-                SqlCommand cmd2 = myConnection.CreateCommand();
-                cmd2.CommandType = CommandType.Text;
-                cmd2.CommandText = "INSERT INTO dbo.RecievedLog (ItemID, Item_Name, Manufacturer, Manufacturer_ID, Amount_Recieved, Tech, Cost, [Repaired, Damaged, or New], Date_Time) VALUES (('" + txt_itemID.Text + "'),('" + txt_itemDescription.Text + "'),('" + txt_manufacturer.Text + "'),('" + txt_manufacturerID.Text + "'), ('" + num_amountUsed.Text + "'),('" + lbl_username.Text + "'), 0, 'New', ('" + myDateTime + "'))";
-                cmd2.ExecuteNonQuery();
-                //SqlDataAdapter da = new SqlDataAdapter(cmd);
-                myConnection.Close();
+                using (SqlCommand cmd1 = new SqlCommand("INSERT INTO dbo.UsedLog (ItemID, Item_Name, Manufacturer, Manufacturer_ID, Amount_Used, Tech, Cost, [Repaired, Damaged or New], Date_Time) VALUES (@itemID, @itemName, @manufacturer,@manufacturerID, @used, @tech, 0, 'New', ('" + myDateTime + "'))", myConnection))
+                {
+                    cmd1.CommandType = CommandType.Text;
+                    cmd1.Parameters.AddWithValue("@itemID", ItemID);
+                    cmd1.Parameters.AddWithValue("@itemName", ItemName);
+                    cmd1.Parameters.AddWithValue("@manufacturer", Manufacturer);
+                    cmd1.Parameters.AddWithValue("@manufacturerID", ManufacturerID);
+                    cmd1.Parameters.AddWithValue("@used", AmountUsed);
+                    cmd1.Parameters.AddWithValue("@tech", Tech);
 
-                this.Hide();
+                    myConnection.Open();
+                    cmd1.ExecuteNonQuery();
+                    myConnection.Close();
 
-                ReceiveItem f1 = new ReceiveItem();
-                f1.ShowDialog();
+                    this.Hide();
 
-                this.Close();
+                    UseItem f1 = new UseItem();
+                    f1.ShowDialog();
+
+                    this.Close();
 
 
+                }
             }
 
             if (rdo_damaged.Checked)
             {
-                myConnection.Open();
-                SqlCommand cmd = myConnection.CreateCommand();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "Update dbo.vlt_Master SET Damaged = Damaged + ('" + num_amountUsed.Text + "') WHERE ItemID = ('" + txt_itemID.Text + "')";
-                cmd.ExecuteNonQuery();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                myConnection.Close();
+                using (SqlCommand cmd = new SqlCommand("UPDATE dbo.vlt_Master SET Damaged = Damaged + @used WHERE ItemID = @itemID", myConnection))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@used", AmountUsed);
+                    cmd.Parameters.AddWithValue("@itemID", ItemID);
+                    myConnection.Open();
+                    cmd.ExecuteNonQuery();
+                    myConnection.Close();
+
+                }
 
                 //gets date and time for TimeStamp.
                 DateTime myDateTime = DateTime.Now;
                 string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd HH:mm:ss");
 
                 //creates the record of item used in the UsedLog table.
-                myConnection.Open();
-                SqlCommand cmd2 = myConnection.CreateCommand();
-                cmd2.CommandType = CommandType.Text;
-                cmd2.CommandText = "INSERT INTO dbo.RecievedLog (ItemID, Item_Name, Manufacturer, Manufacturer_ID, Amount_Recieved, Tech, Cost, [Repaired, Damaged, or New], Date_Time) VALUES (('" + txt_itemID.Text + "'),('" + txt_itemDescription.Text + "'),('" + txt_manufacturer.Text + "'),('" + txt_manufacturerID.Text + "'), ('" + num_amountUsed.Text + "'),('" + lbl_username.Text + "'), 0, 'Damaged', ('" + myDateTime + "'))";
-                cmd2.ExecuteNonQuery();
-                //SqlDataAdapter da = new SqlDataAdapter(cmd);
-                myConnection.Close();
+                using (SqlCommand cmd1 = new SqlCommand("INSERT INTO dbo.UsedLog (ItemID, Item_Name, Manufacturer, Manufacturer_ID, Amount_Used, Tech, Cost, [Repaired, Damaged or New], Date_Time) VALUES (@itemID, @itemName, @manufacturer,@manufacturerID, @used, @tech, 0, 'Damaged', ('" + myDateTime + "'))", myConnection))
+                {
+                    cmd1.CommandType = CommandType.Text;
+                    cmd1.Parameters.AddWithValue("@itemID", ItemID);
+                    cmd1.Parameters.AddWithValue("@itemName", ItemName);
+                    cmd1.Parameters.AddWithValue("@manufacturer", Manufacturer);
+                    cmd1.Parameters.AddWithValue("@manufacturerID", ManufacturerID);
+                    cmd1.Parameters.AddWithValue("@used", AmountUsed);
+                    cmd1.Parameters.AddWithValue("@tech", Tech);
 
-                this.Hide();
+                    myConnection.Open();
+                    cmd1.ExecuteNonQuery();
+                    myConnection.Close();
 
-                ReceiveItem f1 = new ReceiveItem();
-                f1.ShowDialog();
+                    this.Hide();
 
-                this.Close();
+                    UseItem f1 = new UseItem();
+                    f1.ShowDialog();
+
+                    this.Close();
+
+
+                }
             }
 
             if (rdo_repaired.Checked)
             {
-                myConnection.Open();
-                SqlCommand cmd = myConnection.CreateCommand();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "Update dbo.vlt_Master SET Repaired = Repaired + ('" + num_amountUsed.Text + "') WHERE ItemID = ('" + txt_itemID.Text + "')";
-                cmd.ExecuteNonQuery();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                myConnection.Close();
+                using (SqlCommand cmd = new SqlCommand("UPDATE dbo.vlt_Master SET Repaired = Repaired + @used WHERE ItemID = @itemID", myConnection))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("@used", AmountUsed);
+                    cmd.Parameters.AddWithValue("@itemID", ItemID);
+                    myConnection.Open();
+                    cmd.ExecuteNonQuery();
+                    myConnection.Close();
+
+                }
 
                 //gets date and time for TimeStamp.
                 DateTime myDateTime = DateTime.Now;
                 string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd HH:mm:ss");
 
                 //creates the record of item used in the UsedLog table.
-                myConnection.Open();
-                SqlCommand cmd2 = myConnection.CreateCommand();
-                cmd2.CommandType = CommandType.Text;
-                cmd2.CommandText = "INSERT INTO dbo.RecievedLog (ItemID, Item_Name, Manufacturer, Manufacturer_ID, Amount_Recieved, Tech, Cost, [Repaired, Damaged, or New], Date_Time) VALUES (('" + txt_itemID.Text + "'),('" + txt_itemDescription.Text + "'),('" + txt_manufacturer.Text + "'),('" + txt_manufacturerID.Text + "'), ('" + num_amountUsed.Text + "'),('" + lbl_username.Text + "'), 0, 'Repaired', ('" + myDateTime + "'))";
-                cmd2.ExecuteNonQuery();
-                //SqlDataAdapter da = new SqlDataAdapter(cmd);
-                myConnection.Close();
+                using (SqlCommand cmd1 = new SqlCommand("INSERT INTO dbo.UsedLog (ItemID, Item_Name, Manufacturer, Manufacturer_ID, Amount_Used, Tech, Cost, [Repaired, Damaged or New], Date_Time) VALUES (@itemID, @itemName, @manufacturer,@manufacturerID, @used, @tech, 0, 'Repaired', ('" + myDateTime + "'))", myConnection))
+                {
+                    cmd1.CommandType = CommandType.Text;
+                    cmd1.Parameters.AddWithValue("@itemID", ItemID);
+                    cmd1.Parameters.AddWithValue("@itemName", ItemName);
+                    cmd1.Parameters.AddWithValue("@manufacturer", Manufacturer);
+                    cmd1.Parameters.AddWithValue("@manufacturerID", ManufacturerID);
+                    cmd1.Parameters.AddWithValue("@used", AmountUsed);
+                    cmd1.Parameters.AddWithValue("@tech", Tech);
 
-                this.Hide();
+                    myConnection.Open();
+                    cmd1.ExecuteNonQuery();
+                    myConnection.Close();
 
-                ReceiveItem f1 = new ReceiveItem();
-                f1.ShowDialog();
+                    this.Hide();
 
-                this.Close();
+                    UseItem f1 = new UseItem();
+                    f1.ShowDialog();
+
+                    this.Close();
+
+
+                }
             }
         }
         //clears out all of the text fields

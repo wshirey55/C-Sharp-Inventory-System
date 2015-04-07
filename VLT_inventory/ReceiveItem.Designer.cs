@@ -41,7 +41,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.num_amountUsed = new System.Windows.Forms.NumericUpDown();
+            this.num_amountRecieved = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.btn_cancel = new System.Windows.Forms.Button();
             this.btn_confirm = new System.Windows.Forms.Button();
@@ -57,7 +57,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.lbl_username = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.num_amountUsed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_amountRecieved)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vlt_inventoryDBDataSet)).BeginInit();
@@ -172,12 +172,12 @@
             this.label4.TabIndex = 12;
             this.label4.Text = "Manufacturer";
             // 
-            // num_amountUsed
+            // num_amountRecieved
             // 
-            this.num_amountUsed.Location = new System.Drawing.Point(107, 134);
-            this.num_amountUsed.Name = "num_amountUsed";
-            this.num_amountUsed.Size = new System.Drawing.Size(27, 20);
-            this.num_amountUsed.TabIndex = 13;
+            this.num_amountRecieved.Location = new System.Drawing.Point(107, 134);
+            this.num_amountRecieved.Name = "num_amountRecieved";
+            this.num_amountRecieved.Size = new System.Drawing.Size(27, 20);
+            this.num_amountRecieved.TabIndex = 13;
             // 
             // label5
             // 
@@ -216,7 +216,7 @@
             this.groupBox2.Controls.Add(this.btn_confirm);
             this.groupBox2.Controls.Add(this.btn_cancel);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.num_amountUsed);
+            this.groupBox2.Controls.Add(this.num_amountRecieved);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label2);
@@ -332,7 +332,7 @@
             this.Load += new System.EventHandler(this.ReceiveItem_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.num_amountUsed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_amountRecieved)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -356,7 +356,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.NumericUpDown num_amountUsed;
+        private System.Windows.Forms.NumericUpDown num_amountRecieved;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btn_cancel;
         private System.Windows.Forms.Button btn_confirm;

@@ -32,6 +32,8 @@ namespace VLT_inventory
 
         private void txt_search_TextChanged(object sender, EventArgs e)
         {
+            string search = txt_search.Text;
+
             DataTable dt = new DataTable();
             myConnection.Open();
 
@@ -41,7 +43,10 @@ namespace VLT_inventory
 
                 SqlCommand cmd = myConnection.CreateCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select * from dbo.vlt_Master where ItemID like ('" + txt_search.Text + "%')";
+                cmd.CommandText = "SELECT * from dbo.vlt_Master where ItemID LIKE '%' + @search + '%'";
+                cmd.Parameters.AddWithValue("@search", search);
+
+
                 cmd.ExecuteNonQuery();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
@@ -56,7 +61,8 @@ namespace VLT_inventory
 
                 SqlCommand cmd = myConnection.CreateCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select * from dbo.vlt_Master where Item_Name like ('" + txt_search.Text + "%')";
+                cmd.CommandText = "SELECT * from dbo.vlt_Master where Item_Name LIKE '%' + @search + '%'";
+                cmd.Parameters.AddWithValue("@search", search);
                 cmd.ExecuteNonQuery();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
@@ -70,7 +76,8 @@ namespace VLT_inventory
 
                 SqlCommand cmd = myConnection.CreateCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select * from dbo.vlt_Master where Manufacturer like ('" + txt_search.Text + "%')";
+                cmd.CommandText = "SELECT * from dbo.vlt_Master where Manufacturer LIKE '%' + @search + '%'";
+                cmd.Parameters.AddWithValue("@search", search);
                 cmd.ExecuteNonQuery();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
@@ -84,7 +91,8 @@ namespace VLT_inventory
 
                 SqlCommand cmd = myConnection.CreateCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select * from dbo.vlt_Master where Manufacturer_ID like ('" + txt_search.Text + "%')";
+                cmd.CommandText = "SELECT * from dbo.vlt_Master where Manufacturer_ID LIKE '%' + @search + '%'";
+                cmd.Parameters.AddWithValue("@search", search);
                 cmd.ExecuteNonQuery();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
@@ -98,7 +106,8 @@ namespace VLT_inventory
 
                 SqlCommand cmd = myConnection.CreateCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select * from dbo.vlt_Master where Cost like ('" + txt_search.Text + "%')";
+                cmd.CommandText = "SELECT * from dbo.vlt_Master where Cost LIKE '%' + @search + '%'";
+                cmd.Parameters.AddWithValue("@search", search);
                 cmd.ExecuteNonQuery();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
@@ -129,11 +138,24 @@ namespace VLT_inventory
 
         private void btn_add_Click(object sender, EventArgs e)
         {
+            string itemid = txt_itemID.Text;
+            string itemName = txt_itemDescription.Text;
+            string manufacturer = txt_manufacturer.Text;
+            string manufacturerID = txt_manufacturerID.Text;
+            string cost = txt_cost.Text;
+
+
             myConnection.Open();
             SqlCommand cmd = myConnection.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "INSERT INTO dbo.vlt_Master (ItemID,Item_Name,Manufacturer,Manufacturer_ID,Cost,New,Damaged,Repaired) VALUES (('" + txt_itemID.Text + "'), ('" + txt_itemDescription.Text + "'), ('" + txt_manufacturer.Text + "'), ('" + txt_manufacturerID.Text + "'), ('" + txt_cost.Text + "'),0,0,0 )";
+            cmd.CommandText = "INSERT INTO dbo.vlt_Master (ItemID,Item_Name,Manufacturer,Manufacturer_ID,Cost,New,Damaged,Repaired) VALUES (@itemID, @itemName, @manufacturer, @manufacturerID, @cost ,0,0,0 )";
+            cmd.Parameters.AddWithValue("@itemID", itemid);
+            cmd.Parameters.AddWithValue("@itemName", itemName);
+            cmd.Parameters.AddWithValue("@manufacturer", manufacturer);
+            cmd.Parameters.AddWithValue("@manufacturerID", manufacturerID);
+            cmd.Parameters.AddWithValue("@cost", cost);
             cmd.ExecuteNonQuery();
+
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             myConnection.Close();
 
@@ -147,10 +169,14 @@ namespace VLT_inventory
 
         private void btn_remove_Click(object sender, EventArgs e)
         {
+            string itemID = txt_itemID.Text;
+
             myConnection.Open();
             SqlCommand cmd = myConnection.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "DELETE FROM dbo.vlt_Master WHERE itemID = ('" + txt_itemID.Text + "')";
+            cmd.CommandText = "DELETE FROM dbo.vlt_Master WHERE itemID = @itemID";
+            cmd.Parameters.AddWithValue("@itemID", itemID);
+
             cmd.ExecuteNonQuery();
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             myConnection.Close();

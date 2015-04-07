@@ -26,10 +26,13 @@ namespace VLT_inventory
             //if the user wants to search by itemID
             if (cmb_itemBox.SelectedIndex == 0)
             {
+                string itemID = txt_search.Text;
 
                 SqlCommand cmd = myConnection.CreateCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select * from dbo.vlt_Master where ItemID like ('" + txt_search.Text + "%')";
+                cmd.CommandText = "select * from dbo.vlt_Master where ItemID like '%' + @itemID + '%'";
+                cmd.Parameters.AddWithValue("@itemID", itemID);
+
                 cmd.ExecuteNonQuery();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
@@ -41,10 +44,12 @@ namespace VLT_inventory
             //if the user wants to search by Item Name
             if (cmb_itemBox.SelectedIndex == 1)
             {
+                string itemName = txt_search.Text;
 
                 SqlCommand cmd = myConnection.CreateCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select * from dbo.vlt_Master where Item_Name like ('" + txt_search.Text + "%')";
+                cmd.CommandText = "select * from dbo.vlt_Master where Item_Name like '%' +@itemName + '%'";
+                cmd.Parameters.AddWithValue("@itemName", itemName);
                 cmd.ExecuteNonQuery();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
@@ -55,10 +60,12 @@ namespace VLT_inventory
             //if the user wants to search by Manufacturer
             if (cmb_itemBox.SelectedIndex == 2)
             {
+                string manufacturer = txt_search.Text;
 
                 SqlCommand cmd = myConnection.CreateCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select * from dbo.vlt_Master where Manufacturer like ('" + txt_search.Text + "%')";
+                cmd.CommandText = "select * from dbo.vlt_Master where Manufacturer like '%' + @manufacturer + '%'";
+                cmd.Parameters.AddWithValue("@manufacturer", manufacturer);
                 cmd.ExecuteNonQuery();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
@@ -69,10 +76,12 @@ namespace VLT_inventory
             //if the user wants to search by Manufacturer ID
             if (cmb_itemBox.SelectedIndex == 3)
             {
+                string manufactuereID = txt_search.Text;
 
                 SqlCommand cmd = myConnection.CreateCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select * from dbo.vlt_Master where Manufacturer_ID like ('" + txt_search.Text + "%')";
+                cmd.CommandText = "select * from dbo.vlt_Master where Manufacturer_ID like '%' + @manufacturerID '%'";
+                cmd.Parameters.AddWithValue("@manufacturer", manufactuereID);
                 cmd.ExecuteNonQuery();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
@@ -83,10 +92,12 @@ namespace VLT_inventory
             //if the user wants to search by cost
             if (cmb_itemBox.SelectedIndex == 4)
             {
+                string cost = txt_search.Text;
 
                 SqlCommand cmd = myConnection.CreateCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "select * from dbo.vlt_Master where Cost like ('" + txt_search.Text + "%')";
+                cmd.CommandText = "select * from dbo.vlt_Master where Cost like '%' + @cost + '%'";
+                cmd.Parameters.AddWithValue("@cost", cost);
                 cmd.ExecuteNonQuery();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);

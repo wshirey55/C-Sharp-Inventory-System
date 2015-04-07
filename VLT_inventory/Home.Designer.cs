@@ -67,6 +67,7 @@
             this.btn_reports.TabIndex = 2;
             this.btn_reports.Text = "Reports";
             this.btn_reports.UseVisualStyleBackColor = true;
+            this.btn_reports.Click += new System.EventHandler(this.btn_reports_Click);
             // 
             // btn_masterList
             // 

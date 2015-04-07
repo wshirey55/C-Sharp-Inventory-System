@@ -45,11 +45,13 @@ namespace VLT_inventory
         private int userAccess = 0;
         private void btn_masterList_Click(object sender, EventArgs e)
         {
-             
+            string username = lbl_username.Text;
+
             myConnection.Open();
+            
 
-            SqlCommand access = new SqlCommand("SELECT Access from dbo.Users WHERE User_Name = '" + lbl_username.Text + "'", myConnection);
-
+            SqlCommand access = new SqlCommand("SELECT Access from dbo.Users WHERE User_Name = @username", myConnection);
+            access.Parameters.AddWithValue("@username", username);
             userAccess = (int)access.ExecuteScalar();
             myConnection.Close();
 
@@ -76,6 +78,11 @@ namespace VLT_inventory
         private void Home_Load(object sender, EventArgs e)
         {
             lbl_username.Text = Login.sendText;
+        }
+
+        private void btn_reports_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://w00052/Reports_SQLEXPRESS/Pages/Folder.aspx");
         }
 
         
