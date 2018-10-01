@@ -28,76 +28,106 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txt_search = new System.Windows.Forms.TextBox();
-            this.btn_search = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cmb_itemBox = new System.Windows.Forms.ComboBox();
+            this.vltMasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.vlt_inventoryDBDataSet = new VLT_inventory.vlt_inventoryDBDataSet();
+            this.txt_itemID = new System.Windows.Forms.TextBox();
             this.txt_manufacturer = new System.Windows.Forms.TextBox();
             this.txt_manufacturerID = new System.Windows.Forms.TextBox();
             this.txt_itemDescription = new System.Windows.Forms.TextBox();
-            this.txt_itemID = new System.Windows.Forms.Label();
+            this.lable1 = new System.Windows.Forms.Label();
             this.lable5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rdo_repaired = new System.Windows.Forms.RadioButton();
+            this.rdo_damaged = new System.Windows.Forms.RadioButton();
+            this.rdo_new = new System.Windows.Forms.RadioButton();
             this.btn_cancel = new System.Windows.Forms.Button();
             this.btn_confirm = new System.Windows.Forms.Button();
             this.num_amountUsed = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_home = new System.Windows.Forms.Button();
-            this.rdo_new = new System.Windows.Forms.RadioButton();
-            this.rdo_damaged = new System.Windows.Forms.RadioButton();
-            this.rdo_repaired = new System.Windows.Forms.RadioButton();
+            this.vlt_MasterTableAdapter = new VLT_inventory.vlt_inventoryDBDataSetTableAdapters.vlt_MasterTableAdapter();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.vltMasterBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.lbl_username = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vltMasterBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vlt_inventoryDBDataSet)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.num_amountUsed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vltMasterBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // txt_search
             // 
-            this.txt_search.Location = new System.Drawing.Point(54, 27);
+            this.txt_search.Location = new System.Drawing.Point(272, 27);
             this.txt_search.Name = "txt_search";
             this.txt_search.Size = new System.Drawing.Size(217, 20);
             this.txt_search.TabIndex = 0;
-            // 
-            // btn_search
-            // 
-            this.btn_search.Location = new System.Drawing.Point(299, 21);
-            this.btn_search.Name = "btn_search";
-            this.btn_search.Size = new System.Drawing.Size(88, 31);
-            this.btn_search.TabIndex = 1;
-            this.btn_search.Text = "Search";
-            this.btn_search.UseVisualStyleBackColor = true;
+            this.txt_search.TextChanged += new System.EventHandler(this.txt_search_TextChanged);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btn_search);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.cmb_itemBox);
             this.groupBox1.Controls.Add(this.txt_search);
             this.groupBox1.Location = new System.Drawing.Point(19, 16);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(404, 64);
+            this.groupBox1.Size = new System.Drawing.Size(527, 64);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Search";
             // 
-            // dataGridView1
+            // label6
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(23, 105);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(580, 172);
-            this.dataGridView1.TabIndex = 4;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(64, 30);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(56, 13);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "Search By";
             // 
-            // textBox1
+            // cmb_itemBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(97, 36);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(166, 20);
-            this.textBox1.TabIndex = 5;
+            this.cmb_itemBox.FormattingEnabled = true;
+            this.cmb_itemBox.Items.AddRange(new object[] {
+            "Item ID",
+            "Item Name",
+            "Manufacturer",
+            "Manufacturer ID",
+            "Cost"});
+            this.cmb_itemBox.Location = new System.Drawing.Point(138, 27);
+            this.cmb_itemBox.Name = "cmb_itemBox";
+            this.cmb_itemBox.Size = new System.Drawing.Size(116, 21);
+            this.cmb_itemBox.TabIndex = 1;
+            // 
+            // vltMasterBindingSource
+            // 
+            this.vltMasterBindingSource.DataMember = "vlt_Master";
+            this.vltMasterBindingSource.DataSource = this.vlt_inventoryDBDataSet;
+            // 
+            // vlt_inventoryDBDataSet
+            // 
+            this.vlt_inventoryDBDataSet.DataSetName = "vlt_inventoryDBDataSet";
+            this.vlt_inventoryDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // txt_itemID
+            // 
+            this.txt_itemID.Location = new System.Drawing.Point(97, 36);
+            this.txt_itemID.Name = "txt_itemID";
+            this.txt_itemID.Size = new System.Drawing.Size(166, 20);
+            this.txt_itemID.TabIndex = 5;
             // 
             // txt_manufacturer
             // 
@@ -120,14 +150,14 @@
             this.txt_itemDescription.Size = new System.Drawing.Size(166, 20);
             this.txt_itemDescription.TabIndex = 8;
             // 
-            // txt_itemID
+            // lable1
             // 
-            this.txt_itemID.AutoSize = true;
-            this.txt_itemID.Location = new System.Drawing.Point(43, 39);
-            this.txt_itemID.Name = "txt_itemID";
-            this.txt_itemID.Size = new System.Drawing.Size(41, 13);
-            this.txt_itemID.TabIndex = 9;
-            this.txt_itemID.Text = "Item ID";
+            this.lable1.AutoSize = true;
+            this.lable1.Location = new System.Drawing.Point(43, 39);
+            this.lable1.Name = "lable1";
+            this.lable1.Size = new System.Drawing.Size(41, 13);
+            this.lable1.TabIndex = 9;
+            this.lable1.Text = "Item ID";
             // 
             // lable5
             // 
@@ -168,11 +198,11 @@
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.lable5);
-            this.groupBox2.Controls.Add(this.txt_itemID);
+            this.groupBox2.Controls.Add(this.lable1);
             this.groupBox2.Controls.Add(this.txt_itemDescription);
             this.groupBox2.Controls.Add(this.txt_manufacturerID);
             this.groupBox2.Controls.Add(this.txt_manufacturer);
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.txt_itemID);
             this.groupBox2.Location = new System.Drawing.Point(27, 295);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(575, 187);
@@ -180,14 +210,48 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Item Info";
             // 
+            // rdo_repaired
+            // 
+            this.rdo_repaired.AutoSize = true;
+            this.rdo_repaired.Location = new System.Drawing.Point(178, 160);
+            this.rdo_repaired.Name = "rdo_repaired";
+            this.rdo_repaired.Size = new System.Drawing.Size(68, 17);
+            this.rdo_repaired.TabIndex = 19;
+            this.rdo_repaired.TabStop = true;
+            this.rdo_repaired.Text = "Repaired";
+            this.rdo_repaired.UseVisualStyleBackColor = true;
+            // 
+            // rdo_damaged
+            // 
+            this.rdo_damaged.AutoSize = true;
+            this.rdo_damaged.Location = new System.Drawing.Point(178, 137);
+            this.rdo_damaged.Name = "rdo_damaged";
+            this.rdo_damaged.Size = new System.Drawing.Size(71, 17);
+            this.rdo_damaged.TabIndex = 18;
+            this.rdo_damaged.TabStop = true;
+            this.rdo_damaged.Text = "Damaged";
+            this.rdo_damaged.UseVisualStyleBackColor = true;
+            // 
+            // rdo_new
+            // 
+            this.rdo_new.AutoSize = true;
+            this.rdo_new.Location = new System.Drawing.Point(178, 114);
+            this.rdo_new.Name = "rdo_new";
+            this.rdo_new.Size = new System.Drawing.Size(47, 17);
+            this.rdo_new.TabIndex = 17;
+            this.rdo_new.TabStop = true;
+            this.rdo_new.Text = "New";
+            this.rdo_new.UseVisualStyleBackColor = true;
+            // 
             // btn_cancel
             // 
             this.btn_cancel.Location = new System.Drawing.Point(473, 141);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(88, 31);
             this.btn_cancel.TabIndex = 16;
-            this.btn_cancel.Text = "Cancel";
+            this.btn_cancel.Text = "Clear";
             this.btn_cancel.UseVisualStyleBackColor = true;
+            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
             // btn_confirm
             // 
@@ -197,6 +261,7 @@
             this.btn_confirm.TabIndex = 15;
             this.btn_confirm.Text = "Confirm";
             this.btn_confirm.UseVisualStyleBackColor = true;
+            this.btn_confirm.Click += new System.EventHandler(this.btn_confirm_Click);
             // 
             // num_amountUsed
             // 
@@ -231,74 +296,77 @@
             this.btn_home.TabIndex = 16;
             this.btn_home.Text = "Home";
             this.btn_home.UseVisualStyleBackColor = true;
+            this.btn_home.Click += new System.EventHandler(this.btn_home_Click);
             // 
-            // rdo_new
+            // vlt_MasterTableAdapter
             // 
-            this.rdo_new.AutoSize = true;
-            this.rdo_new.Location = new System.Drawing.Point(178, 114);
-            this.rdo_new.Name = "rdo_new";
-            this.rdo_new.Size = new System.Drawing.Size(47, 17);
-            this.rdo_new.TabIndex = 17;
-            this.rdo_new.TabStop = true;
-            this.rdo_new.Text = "New";
-            this.rdo_new.UseVisualStyleBackColor = true;
+            this.vlt_MasterTableAdapter.ClearBeforeFill = true;
             // 
-            // rdo_damaged
+            // vltMasterBindingSource1
             // 
-            this.rdo_damaged.AutoSize = true;
-            this.rdo_damaged.Location = new System.Drawing.Point(178, 137);
-            this.rdo_damaged.Name = "rdo_damaged";
-            this.rdo_damaged.Size = new System.Drawing.Size(71, 17);
-            this.rdo_damaged.TabIndex = 18;
-            this.rdo_damaged.TabStop = true;
-            this.rdo_damaged.Text = "Damaged";
-            this.rdo_damaged.UseVisualStyleBackColor = true;
+            this.vltMasterBindingSource1.DataMember = "vlt_Master";
+            this.vltMasterBindingSource1.DataSource = this.vlt_inventoryDBDataSet;
             // 
-            // rdo_repaired
+            // dataGridView1
             // 
-            this.rdo_repaired.AutoSize = true;
-            this.rdo_repaired.Location = new System.Drawing.Point(178, 160);
-            this.rdo_repaired.Name = "rdo_repaired";
-            this.rdo_repaired.Size = new System.Drawing.Size(68, 17);
-            this.rdo_repaired.TabIndex = 19;
-            this.rdo_repaired.TabStop = true;
-            this.rdo_repaired.Text = "Repaired";
-            this.rdo_repaired.UseVisualStyleBackColor = true;
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(18, 102);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(527, 173);
+            this.dataGridView1.TabIndex = 17;
+            this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
+            // 
+            // lbl_username
+            // 
+            this.lbl_username.AutoSize = true;
+            this.lbl_username.Location = new System.Drawing.Point(602, 9);
+            this.lbl_username.Name = "lbl_username";
+            this.lbl_username.Size = new System.Drawing.Size(53, 13);
+            this.lbl_username.TabIndex = 18;
+            this.lbl_username.Text = "username";
             // 
             // UseItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(667, 582);
+            this.Controls.Add(this.lbl_username);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btn_home);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox1);
             this.Name = "UseItem";
             this.Text = "Use Item";
+            this.Load += new System.EventHandler(this.UseItem_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vltMasterBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vlt_inventoryDBDataSet)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.num_amountUsed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vltMasterBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.TextBox txt_search;
-        private System.Windows.Forms.Button btn_search;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txt_itemID;
         private System.Windows.Forms.TextBox txt_manufacturer;
         private System.Windows.Forms.TextBox txt_manufacturerID;
         private System.Windows.Forms.TextBox txt_itemDescription;
-        private System.Windows.Forms.Label txt_itemID;
+        private System.Windows.Forms.Label lable1;
         private System.Windows.Forms.Label lable5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -312,5 +380,14 @@
         private System.Windows.Forms.RadioButton rdo_repaired;
         private System.Windows.Forms.RadioButton rdo_damaged;
         private System.Windows.Forms.RadioButton rdo_new;
+        private vlt_inventoryDBDataSet vlt_inventoryDBDataSet;
+        private System.Windows.Forms.BindingSource vltMasterBindingSource;
+        private vlt_inventoryDBDataSetTableAdapters.vlt_MasterTableAdapter vlt_MasterTableAdapter;
+        private System.Windows.Forms.ComboBox cmb_itemBox;
+        private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.BindingSource vltMasterBindingSource1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lbl_username;
     }
 }
